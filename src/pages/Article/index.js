@@ -10,7 +10,7 @@ import img404 from '@/assets/error.png'
 import { useEffect, useState } from 'react'
 import { http } from '@/utils'
 import { useStore } from '@/store'
-import { HistoryRouter, history } from 'src/utils/history'
+
 
 const { Option } = Select
 const { RangePicker } = DatePicker
