@@ -15,11 +15,14 @@ import { observer } from 'mobx-react-lite'
 const { Header, Sider, } = Layout
 const GeekLayout = () => {
   const { pathname } = useLocation()
-  const { userStore, loginStore } = useStore()
+  console.log(pathname)
 
+  const { userStore, loginStore, channelStore } = useStore()
+  console.log(userStore.userInfo)
   useEffect(() => {
     userStore.getUserInfo()
-  }, [userStore])
+    channelStore.loadChannelList()
+  }, [userStore, channelStore])
   const navigate = useNavigate()
   const onLogout = () => {
     //退出登录，删除token,跳回登录
@@ -47,6 +50,7 @@ const GeekLayout = () => {
             theme="dark"
             defaultSelectedKeys={[pathname]}
             style={{ height: '100%', borderRight: 0 }}
+            key={[pathname]}
           >
             <Menu.Item icon={<HomeOutlined />} key="/">
               <Link to="/">数据概览</Link>
