@@ -16,16 +16,16 @@ function Bar ({ title, xData, yData, style }) {
       yAxis: {},
       series: [
         {
-          name: '销量',
+          name: 'number',
           type: 'bar',
           data: yData
         }
       ]
-    })
+    }, true)
   }
   useEffect(() => {
     chartInit()
-  }, [])
+  }, [domRef.current])
   return (
     <div>
       <div ref={domRef} style={style}></div>

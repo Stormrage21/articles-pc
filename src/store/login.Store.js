@@ -20,7 +20,7 @@ class LoginStore {
 
     setToken(this.token)
 
-    console.log(setToken(this.token))
+    // console.log(setToken(this.token))
 
   }
   loginOut = () => {

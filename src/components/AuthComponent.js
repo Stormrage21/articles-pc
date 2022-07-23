@@ -5,7 +5,6 @@ function AuthComponent ({ children }) {
 
   if (isToken) {
 
-    console.log(isToken)
     return <>{children}</>
 
   } else {

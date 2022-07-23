@@ -12,7 +12,6 @@ function Login () {
   const navigate = useNavigate()
 
   const onFinish = async (values) => {
-    console.log('Success:', values)
 
     try {
       await loginStore.getToken(
@@ -21,9 +20,9 @@ function Login () {
           code: values.password
         })
       navigate('/', { replace: true })
-      message.success('登录成功')
+      message.success('login success')
     } catch (e) {
-      message.error(e.response?.data?.message || '登录失败')
+      message.error(e.response?.data?.message || 'login failed')
     }
   }
 
@@ -35,7 +34,7 @@ function Login () {
     <div className="login">
       <Card className="login-container">
         <img className="login-logo" src={logo} alt="" />
-        {/* 登录表单 */}
+
         <Form
           name="basic"
           labelCol={{
@@ -53,16 +52,16 @@ function Login () {
           validateTrigger={['onBlur', 'onChange']}
         >
           <Form.Item
-            label="用户名"
+            label="username"
             name="username"
             rules={[
               {
                 required: true,
-                message: '请输入用户名',
+                message: 'Please enter a user name',
               },
               {
                 pattern: /^1[3-9]\d{9}$/,
-                message: '手机号码格式不对',
+                message: 'The mobile phone number is not in the right format',
                 validateTrigger: 'onBlur',
               },
 
@@ -73,17 +72,17 @@ function Login () {
           </Form.Item>
 
           <Form.Item
-            label="密码
+            label="password
             "
             name="password"
             rules={[
               {
                 required: true,
-                message: '请输入密码!',
+                message: 'Please enter your password!',
               }, {
                 min: 6,
                 validateTrigger: 'onBlur',
-                message: '密码最低为6位',
+                message: 'The password must contain at least six characters',
               },
             ]}
           >
@@ -99,7 +98,7 @@ function Login () {
             }}
           >
             <Checkbox>
-              加载黑墙破译程序
+              I agree to the user agreement and privacy policy
             </Checkbox>
           </Form.Item>
 
@@ -110,7 +109,7 @@ function Login () {
             }}
           >
             <Button type="primary" htmlType="submit">
-              入侵
+              sign in
             </Button>
           </Form.Item>
         </Form>

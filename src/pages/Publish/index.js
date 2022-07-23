@@ -38,11 +38,13 @@ const Publish = () => {
     })
     setFileList(fileList)
     fileListRef.current = fileList
-    console.log(fileList)
+    // console.log(fileList)
   }
   const [imgCount, setImagecount] = useState(1)
+  console.log()
+
   const radioChange = (e) => {
-    console.log(e.target.value)
+    // console.log(e.target.value)
     setImagecount(e.target.value)
     const rawValue = e.target.value
     if (fileListRef.current.length === 0) {
@@ -78,9 +80,9 @@ const Publish = () => {
       // 新增
       await http.post('/mp/articles?draft=false', params)
     }
-    console.log(params)
+    // console.log(params)
     navigate('/article')
-    message.success(`${articleId ? '更新成功' : '发布成功'}`)
+    message.success(`${articleId ? 'update success' : 'upload success'}`)
   }
 
 
@@ -94,15 +96,16 @@ const Publish = () => {
   const [params] = useSearchParams()
   const articleId = params.get('id')
   const form = useRef(null)
-  console.log(articleId)
+  // console.log(articleId)
   useEffect(() => {
     async function getArticle () {
       const res = await http.get(`/mp/articles/${articleId}`)
-      console.log(res)
+      // console.log(res)
       const { cover, ...formValue } = res.data
-      console.log(cover)
+      console.log(formValue)
 
       form.current.setFieldsValue({ ...formValue, type: cover.type })
+      // console.log(form.current)
 
       const imageList = cover.images.map(url => ({ url }))
       setFileList(imageList)
@@ -123,9 +126,9 @@ const Publish = () => {
         title={
           <Breadcrumb separator=">">
             <Breadcrumb.Item>
-              <Link to="/home">首页</Link>
+              <Link to="/home">Home</Link>
             </Breadcrumb.Item>
-            <Breadcrumb.Item>{articleId ? '修改' : '发布'}文章</Breadcrumb.Item>
+            <Breadcrumb.Item>{articleId ? 'edit' : 'publish'} article</Breadcrumb.Item>
           </Breadcrumb>
         }
       >
@@ -137,29 +140,29 @@ const Publish = () => {
           ref={form}
         >
           <Form.Item
-            label="标题"
+            label="title"
             name="title"
-            rules={[{ required: true, message: '请输入文章标题' }]}
+            rules={[{ required: true, message: 'Please enter the article title' }]}
           >
-            <Input placeholder="请输入文章标题" style={{ width: 400 }} />
+            <Input placeholder="Please enter the article title" style={{ width: 400 }} />
           </Form.Item>
           <Form.Item
-            label="频道"
+            label="channel"
             name="channel_id"
-            rules={[{ required: true, message: '请选择文章频道' }]}
+            rules={[{ required: true, message: 'Please select article channel道' }]}
           >
-            <Select placeholder="请选择文章频道" style={{ width: 400 }}>
+            <Select placeholder="Please select article channel" style={{ width: 400 }}>
               {channelStore.channelList.map(item => (<Option key={item.id} value={item.id}>{item.name}</Option>))}
 
             </Select>
           </Form.Item>
 
-          <Form.Item label="封面">
+          <Form.Item label="cover">
             <Form.Item name="type">
               <Radio.Group onChange={radioChange}>
-                <Radio value={1}>单图</Radio>
-                <Radio value={3}>三图</Radio>
-                <Radio value={0}>无图</Radio>
+                <Radio value={1}>Single Image</Radio>
+                <Radio value={3}>3 Images</Radio>
+                <Radio value={0}>No Image</Radio>
               </Radio.Group>
             </Form.Item>
             {imgCount > 0 && (
@@ -183,20 +186,20 @@ const Publish = () => {
 
           </Form.Item>
           <Form.Item
-            label="内容"
+            label="content"
             name="content"
-            rules={[{ required: true, message: '请输入文章内容' }]}
+            rules={[{ required: true, message: 'Please enter article content' }]}
           >
             <ReactQuill
               className="publish-quill"
               theme="snow"
-              placeholder="请输入文章内容"
+              placeholder="Please enter article content"
             />
           </Form.Item>
           <Form.Item wrapperCol={{ offset: 4 }}>
             <Space>
               <Button size="large" type="primary" htmlType="submit">
-                {articleId ? '修改文章' : '发布文章'}
+                {articleId ? 'Edit Article' : 'Publish Article'}
               </Button>
             </Space>
           </Form.Item>
