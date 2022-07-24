@@ -8,7 +8,7 @@ const Home = () => {
 
   const [yArticle, setyArticleList] = useState({ count: 0 })
   const loadData = async () => {
-    const res = await http.get('/mp/articles',)
+    const res = await http.get('/mp/articles')
     const { total_count } = res.data
     setyArticleList({
       count: total_count
@@ -19,7 +19,7 @@ const Home = () => {
     // console.log(aaa)
   }
   useEffect(() => {
-    loadData({ page: 1, page: 2 })
+    loadData()
   }, [])
 
   const xdata = ['draft', 'pending', 'approved', 'failed']
@@ -33,7 +33,7 @@ const Home = () => {
 
   return <div>
     <Bar title='Article Data' xData={xdata} yData={ydata} style={{ width: '500px', height: '400px' }} />
-    {/* <Bar title='second bar' xData={['1', '2', '3', '4']} yData={[20, 30, 40, 50]} style={{ width: '400px', height: '300px' }} /> */}
+
   </div>
 }
 

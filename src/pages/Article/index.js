@@ -17,7 +17,7 @@ const Article = () => {
   const { pathname } = useLocation()
 
   const onFinish = (values) => {
-    console.log(`efhwoifhwoeihfowehfo${values}`)
+
 
     const { status, channel_id, date } = values
     // 格式化表单数据
@@ -159,7 +159,8 @@ const Article = () => {
       const res = await http.get('/mp/articles', { params })
       const { results, total_count } = res.data
 
-      console.log(`this is results${res}`)
+
+      // console.log(res1)
       setArticleList({
         list: results,
         count: total_count
@@ -223,7 +224,8 @@ const Article = () => {
           total: article.count,
           current: params.page,
           pageSize: params.per_page,
-          onChange: pageChange
+          onChange: pageChange,
+
         }} />
       </Card>
     </div>
