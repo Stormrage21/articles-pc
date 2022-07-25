@@ -1,5 +1,5 @@
 import Bar from '@/components/Bar'
-import { useEffect, useState, useRef } from 'react'
+import { useEffect, useState } from 'react'
 import { http } from '@/utils'
 // import { observer } from 'mobx-react-lite'
 
@@ -24,7 +24,7 @@ const Home = () => {
 
   const xdata = ['draft', 'pending', 'approved', 'failed']
 
-  let ydata = [0, 0, yArticle.count, , 0]
+  let ydata = [0, 0, yArticle.count, 0]
 
 
   // console.log(yArticle.count)

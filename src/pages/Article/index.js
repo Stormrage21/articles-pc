@@ -1,12 +1,12 @@
-import { Link, useNavigate, useLocation } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { observer } from 'mobx-react-lite'
-import { Table, Tag, Space, Card, Breadcrumb, Form, Button, Radio, DatePicker, Select, Popconfirm, Menu } from 'antd'
+import { Table, Tag, Space, Card, Breadcrumb, Form, Button, Radio, DatePicker, Select, Popconfirm } from 'antd'
 
 import './index.scss'
-import channelStore from '@/store/channels.Store'
+
 import { EditOutlined, DeleteOutlined } from '@ant-design/icons'
 import img404 from '@/assets/error.png'
-import { useEffect, useState, useRef } from 'react'
+import { useEffect, useState } from 'react'
 import { http } from '@/utils'
 import { useStore } from '@/store'
 
@@ -14,7 +14,7 @@ import { useStore } from '@/store'
 const { Option } = Select
 const { RangePicker } = DatePicker
 const Article = () => {
-  const { pathname } = useLocation()
+
 
   const onFinish = (values) => {
 
