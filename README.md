@@ -5,7 +5,7 @@
 
 ## 2 enter the root directory
 ```
-   cd ../article-pc
+   cd article-pc
 ```
 ## 3 start the project
 ```
